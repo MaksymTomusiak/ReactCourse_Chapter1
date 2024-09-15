@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { v4 } from 'uuid';
+import './App.css';
+import ToDoTable from './components/ToDoTable';
+import AddToDoComponent from './components/AddToDoComponent';
+import SearchInput from './components/SearchInput';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const toDoInitial = {
+    title: '',
+    id: null,
+  };
+
+  const [toDoList, setToDoList] = useState([]);
+
+  const [newToDo, setNewToDo] = useState(toDoInitial);
+
+  const [filterQuery, setFilterQuery] = useState('');
+
+  const handleNewTitleChange = (event) => {
+    setNewToDo({ ...newToDo, title: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const updatedToDoList = [...toDoList, { ...newToDo, id: v4() }];
+
+    setToDoList(updatedToDoList);
+    setNewToDo(toDoInitial);
+  };
+
+  const handleFilterQueryChange = (event) => {
+    setFilterQuery(event.target.value);
+  };
+
+  const handleDeleteClick = (id) => {
+    const updatedList = toDoList.filter((x) => x.id !== id);
+
+    setToDoList(updatedList);
+  };
+
+  const filteredToDo = toDoList.filter((x) =>
+    x.title.toLowerCase().includes(filterQuery.toLowerCase())
+  );
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <SearchInput
+        query={filterQuery}
+        onQueryChange={handleFilterQueryChange}
+      />
+      <AddToDoComponent
+        title={newToDo?.title}
+        onTitleChange={handleNewTitleChange}
+        onSubmit={handleSubmit}
+      />
+      <ToDoTable toDoList={filteredToDo} onDeleteClick={handleDeleteClick} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
