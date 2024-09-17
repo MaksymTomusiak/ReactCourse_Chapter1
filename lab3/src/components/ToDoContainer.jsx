@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { v4 } from 'uuid';
-import AddToDoComponent from './AddToDoComponent';
+import AddToDoForm from './AddToDoForm';
 import SearchInput from './SearchInput';
 import ToDoTable from './ToDoTable';
 
@@ -49,7 +49,7 @@ const ToDoContainer = () => {
         query={filterQuery}
         onQueryChange={handleFilterQueryChange}
       />
-      <AddToDoComponent
+      <AddToDoForm
         title={newToDo?.title}
         onTitleChange={handleNewTitleChange}
         onSubmit={handleSubmit}
