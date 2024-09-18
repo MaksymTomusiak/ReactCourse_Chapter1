@@ -24,6 +24,10 @@ const ToDoContainer = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (newToDo.title === '') {
+      return;
+    }
+
     const updatedToDoList = [...toDoList, { ...newToDo, id: v4() }];
 
     setToDoList(updatedToDoList);
