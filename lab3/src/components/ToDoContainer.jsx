@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import { v4 } from 'uuid';
 import AddToDoForm from './AddToDoForm';
 import SearchInput from './SearchInput';
 import ToDoTable from './ToDoTable';
@@ -28,7 +27,7 @@ const ToDoContainer = () => {
       return;
     }
 
-    const updatedToDoList = [...toDoList, { ...newToDo, id: v4() }];
+    const updatedToDoList = [...toDoList, { ...newToDo, id: new Date() }];
 
     setToDoList(updatedToDoList);
     setNewToDo(toDoInitial);

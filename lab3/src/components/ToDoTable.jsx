@@ -14,8 +14,8 @@ function ToDoTable({ toDoList, onDeleteClick }) {
       <tbody>
         {toDoList.map((toDo) => {
           return (
-            <tr key={toDo.id}>
-              <td>{toDo.id}</td>
+            <tr key={toDo.id.toString()}>
+              <td>{toDo.id.toString()}</td>
               <td>{toDo.title}</td>
               <td>
                 <DeleteToDoButton
