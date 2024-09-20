@@ -55,23 +55,6 @@ const ToDoContainer = () => {
   );
   return (
     <>
-      {
-        <>
-          <SearchInput
-            query={filterQuery}
-            onQueryChange={handleFilterQueryChange}
-          />
-          <AddToDoForm
-            title={newToDo?.title}
-            onTitleChange={handleNewTitleChange}
-            onSubmit={handleSubmit}
-          />
-          <ToDoTable
-            toDoList={filteredToDo}
-            onDeleteClick={handleDeleteClick}
-          />
-        </>
-      }
       {isLoading && (
         <div
           style={{
@@ -137,6 +120,18 @@ const ToDoContainer = () => {
           </svg>
         </div>
       )}
+      <>
+        <SearchInput
+          query={filterQuery}
+          onQueryChange={handleFilterQueryChange}
+        />
+        <AddToDoForm
+          title={newToDo?.title}
+          onTitleChange={handleNewTitleChange}
+          onSubmit={handleSubmit}
+        />
+        <ToDoTable toDoList={filteredToDo} onDeleteClick={handleDeleteClick} />
+      </>
     </>
   );
 };
