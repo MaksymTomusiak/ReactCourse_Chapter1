@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function useFetch() {
-  const [data, setData] = useState([]);
+  const [toDoList, setToDoList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const toggleIsLoading = () => {
@@ -13,12 +13,12 @@ function useFetch() {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((response) => response.json())
       .then((json) => {
-        setData(json);
+        setToDoList(json);
         toggleIsLoading();
       });
   }, []);
 
-  return { data, isLoading };
+  return { toDoList, setToDoList, isLoading };
 }
 
 export default useFetch;

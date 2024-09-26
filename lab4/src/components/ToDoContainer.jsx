@@ -11,17 +11,11 @@ const ToDoContainer = () => {
     id: null,
   };
 
-  const { data, isLoading } = useFetch();
-
-  const [toDoList, setToDoList] = useState([]);
-
   const [newToDo, setNewToDo] = useState(toDoInitial);
 
   const [filterQuery, setFilterQuery] = useState("");
 
-  useEffect(() => {
-    setToDoList(data);
-  }, [data]);
+  const { toDoList, setToDoList, isLoading } = useFetch();
 
   const handleNewTitleChange = (event) => {
     setNewToDo({ ...newToDo, title: event.target.value });
