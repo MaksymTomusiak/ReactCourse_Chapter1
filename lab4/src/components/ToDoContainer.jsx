@@ -12,7 +12,6 @@ const ToDoContainer = () => {
   };
 
   const [newToDo, setNewToDo] = useState(toDoInitial);
-
   const [filterQuery, setFilterQuery] = useState("");
 
   const { toDoList, setToDoList, isLoading } = useGetToDoList();
