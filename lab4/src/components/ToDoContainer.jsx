@@ -3,7 +3,7 @@ import { useState } from "react";
 import AddToDoForm from "./AddToDoForm";
 import SearchInput from "./SearchInput";
 import ToDoTable from "./ToDoTable";
-import useFetch from "../hooks/useFetch";
+import useGetToDoList from "../hooks/useGetToDoList";
 
 const ToDoContainer = () => {
   const toDoInitial = {
@@ -15,7 +15,7 @@ const ToDoContainer = () => {
 
   const [filterQuery, setFilterQuery] = useState("");
 
-  const { toDoList, setToDoList, isLoading } = useFetch();
+  const { toDoList, setToDoList, isLoading } = useGetToDoList();
 
   const handleNewTitleChange = (event) => {
     setNewToDo({ ...newToDo, title: event.target.value });
