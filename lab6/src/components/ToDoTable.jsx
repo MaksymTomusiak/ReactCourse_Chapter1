@@ -27,32 +27,23 @@ function ToDoTable({ toDoList, setToDoList, onDeleteClick }) {
       </thead>
       <tbody>
         {toDoList.map((toDo) => {
+          <tr></tr>;
           return toDo.id === editId ? (
             <tr key={toDo.id.toString()}>
               <td>{toDo.id.toString()}</td>
-              {editError === "" ? (
-                <td>
-                  <input
-                    style={{
-                      borderRadius: "5px",
-                    }}
-                    value={editTitle}
-                    onChange={handleEditTitleChange}
-                  />
-                </td>
-              ) : (
-                <td>
-                  <input
-                    style={{
-                      border: "1px solid darkred",
-                      borderRadius: "5px",
-                    }}
-                    value={editTitle}
-                    onChange={handleEditTitleChange}
-                  />
+              <td>
+                <input
+                  style={{
+                    borderRadius: "5px",
+                  }}
+                  value={editTitle}
+                  onChange={handleEditTitleChange}
+                />
+                {editError === "" ? null : (
                   <p style={{ color: "darkred", margin: "0" }}>{editError}</p>
-                </td>
-              )}
+                )}
+              </td>
+
               <td>
                 <DeleteToDoButton
                   onButtonClick={() => onDeleteClick(toDo.id)}
