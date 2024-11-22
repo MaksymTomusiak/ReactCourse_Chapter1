@@ -38,12 +38,14 @@ const UsersContainer = () => {
     <>
       {isLoading && <Loading isLoading={isLoading}>Loading...</Loading>}
 
-      <FetchUsersButton onFetchButtonClick={handleUsersFetch} />
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <FetchUsersButton onFetchButtonClick={handleUsersFetch} />
 
-      <SearchInput
-        query={filterQuery}
-        onQueryChange={handleFilterQueryChange}
-      />
+        <SearchInput
+          query={filterQuery}
+          onQueryChange={handleFilterQueryChange}
+        />
+      </div>
 
       <UsersTable
         usersList={filteredUsers}
