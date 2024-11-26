@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import SearchInput from '../common/SearchInput';
-import UsersTable from './UsersTable';
 import useGetUsers from '../../hooks/useGetUsers';
-import { Loading } from '../common/Loading';
-import FetchUsersButton from './FetchUsersButton';
 import useDeleteUser from '../../hooks/useDeleteUsers';
+import { Loading } from '../common/Loading';
+import UsersTable from './UsersTable';
+import FetchUsersButton from './FetchUsersButton';
 
 const UsersContainer = () => {
   const [filterQuery, setFilterQuery] = useState('');
@@ -17,6 +17,7 @@ const UsersContainer = () => {
     const newUsersList = usersList.filter((user) => user.id !== id);
     setUsersList(newUsersList);
   };
+
   const handleUsersFetch = () => {
     fetchAllUsers();
   };
